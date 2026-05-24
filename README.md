@@ -1,4 +1,7 @@
 # Go-health-api
+
+[![Go CI](https://github.com/dfbello/go-health-api/actions/workflows/ci.yaml/badge.svg)](https://github.com/dfbello/go-health-api/actions/workflows/ci.yaml)
+
 A simple API service written in Golang.
 I'm building this project as proof of work in hopes of landing a DevOps / Cloud role. 
 
