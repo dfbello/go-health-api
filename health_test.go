@@ -51,7 +51,7 @@ func TestHealthEndpointWrongMethod(t *testing.T) {
 	sMux.HandleFunc("GET /health", healthHandler)
 
 	// create the request
-	req := httptest.NewRequest("POST", "/health", nil)
+	req := httptest.NewRequest("GET", "/health", nil)
 	// create response recorder
 	rec := httptest.NewRecorder()
 
