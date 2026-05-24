@@ -1,0 +1,23 @@
+name: Go CI
+
+# Events
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Official predefined action. 
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          # Fix Go version for consistency
+          go-version: '1.25'
+
+      - name: Run tests
+        run: go test ./...
