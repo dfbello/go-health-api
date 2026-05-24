@@ -37,3 +37,7 @@ If you use another method like POST you will get a **405 Method Not Allowed**.
 $ curl -X POST http://127.0.0.1:8080/health
 Method Not Allowed
 ```
+
+## CI
+
+The ```.github/workflows/ci.yaml``` is a simple CI worflow that runs tests on the code everytime a push is made to the main branch.
