@@ -10,13 +10,15 @@ I'm building this project as proof of work in hopes of landing a DevOps / Cloud 
 You can either use `go run main.go` on the root directory or run the executable file product of running `go build`
 
 ### Docker
-You can build the image and run the container easily thanks to the provided ```Dockerfile```:
+You can build the image and run the container easily thanks to the provided `Dockerfile`:
 
 ```bash
 $ docker build -t my:tag .
 $ docker run -p PORT:8080 my:tag
 ```
-**Note:** Remember to replace ```PORT``` with your desired host port, e.g. ```8080:8080```.
+**Note:** Remember to replace `PORT` with your desired host port, e.g. `8080:8080`.
+
+Alternatively you can use the latest Docker [image](https://hub.docker.com/repository/docker/dfbello/go-health-api/general) 
 
 ## Endpoints
 - **"/":** returns a json body with a simple message on success.
@@ -40,4 +42,4 @@ Method Not Allowed
 
 ## CI
 
-The ```.github/workflows/ci.yaml``` is a simple CI worflow that runs tests on the code everytime a push is made to the main branch.
+The `.github/workflows/ci.yaml` is a simple CI workflow that runs tests on the code, if tests pass, builds and tags the Docker image with the commit SHA and pushes it to DockerHub everytime a push is made to the main branch.
