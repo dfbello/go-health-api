@@ -21,3 +21,22 @@ jobs:
 
       - name: Run tests
         run: go test ./...
+
+  build-and-push:
+    needs: test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Official predefined action. 
+
+      - name: DockerHub Login
+        # Password from stdin prevents token from being accessible in shell history.
+        run: echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
+
+      - name: Build image
+        run: docker build -t dfbello/go-health-api:latest -t dfbello/go-health-api:${{ github.sha }} .
+
+      - name: Push to DockerHub
+        run: docker push --all-tags dfbello/go-health-api
