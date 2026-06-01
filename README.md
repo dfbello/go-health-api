@@ -41,5 +41,10 @@ Method Not Allowed
 ```
 
 ## CI
-
 The `.github/workflows/ci.yaml` is a simple CI workflow that runs tests on the code, if tests pass, builds and tags the Docker image with the commit SHA and pushes it to DockerHub everytime a push is made to the main branch.
+
+## Live URL
+I have an AWS ec2 instance running this API. You can hit the endpoint like so:
+```bash
+curl -X GET http://18.225.11.202:80/health
+```
