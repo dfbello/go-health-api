@@ -28,6 +28,12 @@ func main() {
 		w.Write([]byte("{\"message\": \"Health API is up and running\"}\n"))
 	})
 
+	sMux.HandleFunc("GET /jenini", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json; charset=utf-8" )
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("{\"message\": \"Jenini says: Diego is the chosen one\"}\n"))
+	})
+
 	fmt.Printf("[INFO] Server listening at %s\n", server.Addr)
 	server.ListenAndServe()
 }
