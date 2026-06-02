@@ -47,10 +47,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up SSH
+      - name: Set up private key
         run: |
           printf '%s' "${{ secrets.EC2_SSH_KEY }}" > ssh-key.pem
           chmod 400 ssh-key.pem
+
+      - name: Set up public key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.EC2_IP }} > ~/.ssh/known_hosts
 
       - name: SSH into the EC2 instance, Pull and run docker image
         run: |
