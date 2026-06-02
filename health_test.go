@@ -31,7 +31,7 @@ func TestHealthEndpointHappyPath (t *testing.T) {
 		t.Errorf("Expected %v but got %v", expectedContentType, gotContentType)
 	}
 
-	expectedBody := "{\"status\": \"ok\"}"
+	expectedBody := "{\"status\": \"ok\"}\n"
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		t.Fatalf("Could not read Body: %v", err)
