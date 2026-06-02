@@ -55,7 +55,7 @@ jobs:
       - name: Set up public key
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.EC2_IP }} > ~/.ssh/known_hosts
+          printf '%s' "${{ secrets.EC2_PUBLIC_KEY }}" >> ~/.ssh/known_hosts
 
       - name: SSH into the EC2 instance, Pull and run docker image
         run: |
