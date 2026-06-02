@@ -40,8 +40,11 @@ $ curl -X POST http://127.0.0.1:8080/health
 Method Not Allowed
 ```
 
-## CI
-The `.github/workflows/ci.yaml` is a simple CI workflow that runs tests on the code, if tests pass, builds and tags the Docker image with the commit SHA and pushes it to DockerHub everytime a push is made to the main branch.
+## CI/CD
+The `.github/workflows/ci.yaml` is a simple CI/CD workflow that runs on every push and is comprised by the following jobs:
+- **test:** Runs the Go test suite.
+- **build-and-push:** If the test job is successful, builds the docker image, tags it with the commit SHA and pushes it to DockerHub.
+- **deploy:** If the build-and-push job passes, it connects to a AWS EC2 instance via SSH and pulls the docker image to update the container running with the latest version.
 
 ## Live URL
 I have an AWS ec2 instance running this API. You can hit the endpoint like so:

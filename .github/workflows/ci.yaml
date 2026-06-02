@@ -40,3 +40,30 @@ jobs:
 
       - name: Push to DockerHub
         run: docker push --all-tags dfbello/go-health-api
+
+  deploy:
+    needs: build-and-push
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up SSH
+        run: |
+          printf '%s' "${{ secrets.EC2_SSH_KEY }}" > ssh-key.pem
+          chmod 400 ssh-key.pem
+
+      - name: SSH into the EC2 instance, Pull and run docker image
+        run: |
+          ssh -i ssh-key.pem ubuntu@${{ secrets.EC2_IP }} <<'EOF'
+          set -e
+          sudo docker pull dfbello/go-health-api:latest 
+          sudo docker stop go-health-api-container || true
+          sudo docker rm go-health-api-container || true
+          sudo docker run -d \
+              --name go-health-api-container \
+              -p 80:8080 \
+              dfbello/go-health-api:latest
+          EOF
+
+      - name: Clean up
+        run: rm ssh-key.pem 

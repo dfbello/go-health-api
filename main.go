@@ -8,7 +8,7 @@ import (
 func healthHandler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json; charset=utf-8" )
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"status\": \"ok\"}"))
+		w.Write([]byte("{\"status\": \"ok\"}\n"))
 	}
 
 func main() {
@@ -25,7 +25,7 @@ func main() {
 	sMux.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json; charset=utf-8" )
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"message\": \"Health API is up and running\"}"))
+		w.Write([]byte("{\"message\": \"Health API is up and running\"}\n"))
 	})
 
 	fmt.Printf("[INFO] Server listening at %s\n", server.Addr)
