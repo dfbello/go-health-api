@@ -66,7 +66,7 @@ jobs:
           sudo docker rm go-health-api-container || true
           sudo docker run -d \
               --name go-health-api-container \
-              -p 80:8080 \
+              -p 127.0.0.1:8080:8080 \
               dfbello/go-health-api:latest
           EOF
 
